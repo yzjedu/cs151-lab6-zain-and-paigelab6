@@ -1,5 +1,3 @@
-# Algorithm Document
-#### PLEASE! PLEASE! PLEASE! THINK before you code...
 
 1. Output a welcome message explaining the purpose of the program.
 2. Initialize variables:
