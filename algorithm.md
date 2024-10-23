@@ -29,15 +29,17 @@
    1. return `current_balance`
 6. make a function named exit:
    7. Output a message thanking the user and indicate the program is ending.
-7. while loop that continues until the user enters 'E':
-   1. if the choice is 'D':
-      1. call deposit function 
-   2. else if the choice is 'W':
-      1. call withdraw function
-   3. else if the choice is 'V':
-      1. call view_balance function
-   4. else if choice is 'E':
-      1. call exit function
-   5. Otherwise, if the choice is not one of the valid options:
-      1. Output an error message requesting a valid option (D, W, V, or E)
+7. make function main
+   8. while loop that continues until the user enters sentinel:
+      1. if the choice is 'D':
+         1. call deposit function 
+      2. else if the choice is 'W':
+         1. call withdraw function
+      3. else if the choice is 'V':
+         1. call view_balance function
+      4. else if choice is 'E':
+         1. call exit function
+      5. Otherwise, if the choice is not one of the valid options:
+         1. Output an error message requesting a valid option (D, W, V, or E)
+4. call main function 
 5. Output a message indicating the ATM program has ended.

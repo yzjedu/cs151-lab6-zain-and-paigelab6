@@ -1,4 +1,3 @@
-
 # Programmers:  [Zain, Paige]
 # Course:  CS151, [Instructors name here]
 # Due Date: [date assignment is due]
@@ -13,67 +12,83 @@ from logging import DEBUG
 print("Welcome to the ATM program! This program allows you to interact with your account balance.")
 
 # Initialize variables
-INITIAL_BALANCE = 1000
-current_balance = INITIAL_BALANCE
+initial_balance = 1000
+current_balance = initial_balance
 SENTINEL = 'E'
-choice = ''
+
 def deposit():
+    initial_balance = 1000
+    current_balance = initial_balance
     deposit_amount = input("Enter the amount to deposit: ").strip()
+    while not deposit_amount.isdigit():
+        print("Please enter a valid deposit amount.")
+        deposit_amount = input("Enter the amount to deposit: ").strip()
+    deposit_amount = int(deposit_amount)
+    while deposit_amount < 0:
+        print("Error: Please enter a positive number.")
+        deposit_amount = input("Enter the amount to deposit: ").strip()
+    current_balance += deposit_amount
+    initial_balance = current_balance
+    print(f"Deposit successful! Your new balance is ${current_balance:.2f}.")
+    return current_balance
 
-    if deposit_amount.isdigit():
-        deposit_amount = int(deposit_amount)
-
-        if deposit_amount < 0:
-            print("Error: Please enter a positive number.")
-        else:
-            current_balance += deposit_amount
-            print(f"Deposit successful! Your new balance is ${current_balance:.2f}.")
-    else:
-        print("Error: Please enter a valid number.")
-        return INITIAL_BALANCE
 
 def withdraw():
+    initial_balance = 1000
+    current_balance = initial_balance
     withdraw_amount = input("Enter the amount to withdraw: ").strip()
-    if withdraw_amount.isdigit():
-        withdraw_amount = int(withdraw_amount)
+    while not withdraw_amount.isdigit():
+        print("Please enter a valid withdraw amount.")
+        withdraw_amount = input("Enter the amount to withdraw: ").strip()
+    withdraw_amount = int(withdraw_amount)
+    while withdraw_amount < 0:
+        print("Error: Please enter a positive number.")
+        withdraw_amount = input("Enter the amount to withdraw: ").strip()
 
-     if withdraw_amount < 0:
-                print("Error: Please enter a positive number.")
-            else:
-                current_balance -= withdraw_amount
-                print(f"Withdrawal successful! Your new balance is ${current_balance:.2f}.")
+    current_balance -= withdraw_amount
+    initial_balance = current_balance
+    print(f"Withdrawal successful! Your new balance is ${current_balance:.2f}.")
 
-                # Warning if the balance is negative
-     if current_balance < 0:
-                    print("❕ Warning: You have a negative balance. You will be charged 5% interest.")
-        return INITIAL_BALANCE
+    # Warning if the balance is negative
+    if current_balance < 0:
+        print("❕ Warning: You have a negative balance. You will be charged 5% interest.")
+    return current_balance
 
-    def View_Balance():
-        return current_balance
-    def exit():
-        print('Thank you, this program is now over.')
+def View_Balance():
+    print(f"Your balance is ${current_balance:.2f}.")
+    return current_balance
+def exit():
+    print('Thank you, this program is now over.')
 
 
 # Start the loop until the user decides to exit
-while choice.upper() != SENTINEL:
-    # Display the menu
-    if choice == D:
-        deposit()
-    elif choice == w:
-        withdraw()
-    elif choice == V:
-        View_Balance()
-    elif choice == E:
-        exit()
-    print("\nPlease select an option:"
-          "\n\t D - Deposit"
-          "\n\t W - Withdraw"
-          "\n\t V - View Balance"
-          "\n\t E - Exit")
+def main():
+    initial_balance = 1000
+    current_balance = initial_balance
+    SENTINEL = 'E'
+    choice = ''
+    while choice.upper() != SENTINEL:
+        # Display the menu
+        print("\nPlease select an option:"
+              "\n\t D - Deposit"
+              "\n\t W - Withdraw"
+              "\n\t V - View Balance"
+              "\n\t E - Exit")
 
-    choice = input("Your choice: ").strip().upper()
+        choice = input("Your choice: ").strip().upper()
+
+        if choice == 'D':
+            deposit()
+            initial_balance = current_balance
+        elif choice == 'W':
+            withdraw()
+            initial_balance = current_balance
+        elif choice == 'V':
+            View_Balance()
+        elif choice == 'E':
+            exit()
 
 
-
+main()
 
 print("ATM program has ended.")
